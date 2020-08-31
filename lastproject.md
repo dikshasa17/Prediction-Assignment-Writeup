@@ -3,7 +3,6 @@ title: "Prediction Assignment Writeup"
 author: "DIKSHA SAINI"
 output:
   pdf_document: default
-  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -22,7 +21,7 @@ an improvement of 1.81 MPG.  Other variables, weight, horsepower, and number of
 cylinders contributed more significantly to the overall MPG of vehicles.
 
 
-###Data Loading
+### Data Loading
 The first step is to load the training and testing data to R. There are 160 variables on 19622 observations
 ```{r warning=FALSE,cache=TRUE}
 library(caret)
@@ -32,7 +31,7 @@ testing = read.csv("C:\\Users\\Neetu Saini\\Desktop\\data science\\course8\\test
 ```
 
 
-###Cleaning the data
+### Cleaning the data
 On closer inspection, the original dataset has 160 variables (including the response variable). However, upon scanning through the summary of the dataset, the first 5 variables are unlikely to be explanatory since they are data identifiers for individual and time, and an additional 100 variables has 98% of their observations in NAs so they are highly unlikely to contain much value as well so they are also dropped.
 ```{r warning=FALSE,cache=TRUE}
 training1 = training[,-c(1:5,12:36, 50:59, 69:83,87:101,103:112,125:139,141:150)]
@@ -71,7 +70,7 @@ confusionMatrix(predict(modFit1_1_rf,training1_4),as.factor(training1_4$classe))
 confusionMatrix(predict(modFit1_1_gbm,training1_4),as.factor(training1_4$classe))
 ```
 
-###Appendix
+### Appendix
 From the out-of-sample testing for subset 3 and 4, random forest model still outperforms boosting, with an accuracy rate of over 94%. As such, the random forest model 1 is chosen.
 ```{r warning=FALSE, echo=FALSE,cache=TRUE}
 
